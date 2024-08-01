@@ -13,7 +13,7 @@
         "@semaphore-protocol/data": "4.0.1",
         "@semaphore-protocol/utils": "4.0.1",
         "ethers": "^6.11.1",
-        "next": "14.1.0",
+        "next": "14.1.1",
         "next-pwa": "^5.6.0",
         "react": "^18",
         "react-dom": "^18"
