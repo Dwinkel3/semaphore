@@ -1,9 +1,9 @@
 <p align="center">
     <h1 align="center">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/semaphore-protocol/.github/blob/main/assets/semaphore-logo-light.svg">
-        <source media="(prefers-color-scheme: light)" srcset="https://github.com/semaphore-protocol/.github/blob/main/assets/semaphore-logo-dark.svg">
-        <img width="250" alt="Semaphore icon" src="https://github.com/semaphore-protocol/.github/blob/main/assets/semaphore-logo-dark.svg">
+        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/semaphore-protocol/.github/main/assets/semaphore-logo-light.svg">
+        <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/semaphore-protocol/.github/main/assets/semaphore-logo-dark.svg">
+        <img width="250" alt="Semaphore icon" src="https://raw.githubusercontent.com/semaphore-protocol/.github/main/assets/semaphore-logo-dark.svg">
       </picture>
     </h1>
 </p>
@@ -56,6 +56,10 @@
         <a href="https://semaphore.pse.dev/discord">
             🗣️ Chat &amp; Support
         </a>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="https://js.semaphore.pse.dev">
+            💻 API Reference
+        </a>
     </h4>
 </div>
 
@@ -63,6 +67,9 @@
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 The core of the Semaphore protocol is in the [circuit logic](/packages/circuits/scheme.png). However, Semaphore also provides [Solidity contracts](/packages/contracts) and JavaScript libraries to make the steps for offchain proof creation and onchain/offchain verification easier. To learn more about Semaphore visit [semaphore.pse.dev](https://semaphore.pse.dev).
+
+> [!IMPORTANT]  
+> Help Semaphore prosper by sharing your ideas with the PSE [acceleration program](https://github.com/privacy-scaling-explorations/acceleration-program).
 
 ## 📦 Packages
 
@@ -309,7 +316,7 @@ yarn format:write
 Semaphore uses [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). A [command line utility](https://github.com/commitizen/cz-cli) to commit using the correct syntax can be used by running:
 
 ```bash
-yarn commit
+git commit
 ```
 
 It will also automatically check that the modified files comply with ESLint and Prettier rules.

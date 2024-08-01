@@ -24,13 +24,13 @@ export default function GroupsPage() {
         }
 
         setIdentity(new Identity(privateKey))
-    }, [])
+    }, [router])
 
     useEffect(() => {
         if (_users.length > 0) {
             setLogs(`${_users.length} user${_users.length > 1 ? "s" : ""} retrieved from the group 🤙🏽`)
         }
-    }, [_users])
+    }, [_users, setLogs])
 
     const joinGroup = useCallback(async () => {
         if (!_identity) {
@@ -72,7 +72,7 @@ export default function GroupsPage() {
         }
 
         setLoading(false)
-    }, [_identity])
+    }, [_identity, addUser, setLogs])
 
     const userHasJoined = useCallback((identity: Identity) => _users.includes(identity.commitment.toString()), [_users])
 
@@ -124,7 +124,7 @@ export default function GroupsPage() {
                 <div>
                     {_users.map((user, i) => (
                         <div key={i}>
-                            <p className="box box-text">{user}</p>
+                            <p className="box box-text">{user.toString()}</p>
                         </div>
                     ))}
                 </div>

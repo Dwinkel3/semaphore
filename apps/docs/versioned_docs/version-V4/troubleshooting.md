@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 import Tabs from "@theme/Tabs"
@@ -8,12 +8,6 @@ import TabItem from "@theme/TabItem"
 # Troubleshooting
 
 If these suggestions do not work, feel free to ask for more help and support on [Github Discussions](https://github.com/semaphore-protocol/semaphore/discussions) or [Discord](https://semaphore.pse.dev/discord) ("dev-chat" channel).
-
-## Creating a Group
-
-When you create a group and the transaction is reverted, make sure that the group id you are using does not exist on the network you are using.
-
-To check that, you can use the [Semaphore CLI](https://github.com/semaphore-protocol/semaphore/tree/main/packages/cli) with the command `get-groups` and the network you are using and then, make sure that your group id is not part of that list. You can also use the [Semaphore explorer](https://explorer.semaphore.pse.dev/).
 
 ## Transaction reverted when using the same nullifier
 

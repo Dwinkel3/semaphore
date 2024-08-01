@@ -1,11 +1,11 @@
 import type { Group, MerkleProof } from "@semaphore-protocol/group"
 import type { Identity } from "@semaphore-protocol/identity"
 import { MAX_DEPTH, MIN_DEPTH } from "@semaphore-protocol/utils/constants"
+import { Project, maybeGetSnarkArtifacts, type SnarkArtifacts } from "@zk-kit/artifacts"
 import { requireDefined, requireNumber, requireObject, requireTypes } from "@zk-kit/utils/error-handlers"
 import { packGroth16Proof } from "@zk-kit/utils/proof-packing"
-import { maybeGetSemaphoreSnarkArtifacts, type SnarkArtifacts } from "@zk-kit/utils"
 import type { BigNumberish } from "ethers"
-import { type NumericString, groth16 } from "snarkjs"
+import { groth16, type NumericString } from "snarkjs"
 import hash from "./hash"
 import toBigInt from "./to-bigint"
 import type { SemaphoreProof } from "./types"
@@ -22,6 +22,7 @@ import type { SemaphoreProof } from "./types"
  * If it is not defined, it will be inferred from the group or Merkle proof passed as the second parameter.
  * Finally, the artifacts themselves can be passed manually with file paths,
  * or they will be automatically fetched.
+ * Please keep in mind that groups with 1 member or 2 members cannot be considered anonymous.
  * @param identity The Semaphore identity.
  * @param groupOrMerkleProof The Semaphore group or its Merkle proof.
  * @param message The Semaphore message.
@@ -79,11 +80,14 @@ export default async function generateProof(
             throw new TypeError(`The tree depth must be a number between ${MIN_DEPTH} and ${MAX_DEPTH}`)
         }
     } else {
-        merkleTreeDepth = merkleProofLength
+        merkleTreeDepth = merkleProofLength !== 0 ? merkleProofLength : 1
     }
 
     // If the Snark artifacts are not defined they will be automatically downloaded.
-    snarkArtifacts ??= await maybeGetSemaphoreSnarkArtifacts(merkleTreeDepth)
+    snarkArtifacts ??= await maybeGetSnarkArtifacts(Project.SEMAPHORE, {
+        parameters: [merkleTreeDepth],
+        version: "4.0.0"
+    })
     const { wasm, zkey } = snarkArtifacts
 
     // The index must be converted to a list of indices, 1 for each tree level.
@@ -114,7 +118,7 @@ export default async function generateProof(
 
     return {
         merkleTreeDepth,
-        merkleTreeRoot: publicSignals[0],
+        merkleTreeRoot: merkleProof.root.toString(),
         nullifier: publicSignals[1],
         message: message.toString() as NumericString,
         scope: scope.toString() as NumericString,

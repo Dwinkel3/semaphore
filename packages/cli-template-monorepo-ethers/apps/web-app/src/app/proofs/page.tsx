@@ -24,13 +24,13 @@ export default function ProofsPage() {
         }
 
         setIdentity(new Identity(privateKey))
-    }, [])
+    }, [router])
 
     useEffect(() => {
         if (_feedback.length > 0) {
             setLogs(`${_feedback.length} feedback retrieved from the group 🤙🏽`)
         }
-    }, [_feedback])
+    }, [_feedback, setLogs])
 
     const sendFeedback = useCallback(async () => {
         if (!_identity) {
@@ -39,11 +39,6 @@ export default function ProofsPage() {
 
         if (typeof process.env.NEXT_PUBLIC_GROUP_ID !== "string") {
             throw new Error("Please, define NEXT_PUBLIC_GROUP_ID in your .env file")
-        }
-
-        if (_users && _users.length < 2) {
-            alert("No anonymity in a group of one!")
-            return
         }
 
         const feedback = prompt("Please enter your feedback:")
@@ -105,7 +100,7 @@ export default function ProofsPage() {
                 setLoading(false)
             }
         }
-    }, [_identity, _users])
+    }, [_identity, _users, addFeedback, setLogs])
 
     return (
         <>

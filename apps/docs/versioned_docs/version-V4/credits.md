@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Credits
@@ -17,3 +17,4 @@ Semaphore is the work of several people, for a complete list of contributors you
 -   [LauNaMu](https://github.com/0xyNaMu)
 -   [0xjei](https://github.com/0xjei)
 -   [Mari Poveda](https://github.com/maripoveda)
+-   [Gauthier](https://github.com/sripwoud)
